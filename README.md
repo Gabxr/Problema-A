@@ -1,60 +1,43 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-//procedimento1 
-void ordem (int i){
-	i++;
-	printf(" %i",i);
-}
+		//cálculo do mmc
 		
-
-int main (){
-	int soma = 0;
-	int m = 2;
-	int mmc = 1;
-	int o;
-	printf("numero de obstaculos: ");
-	scanf("%i",&o);
-	printf("\nFrequencia dos obstaculos em ordem crescente!");
-	int f[o];
-	int i=0;
- 	for ( ; i < o; i++){
-	printf("\nFrequencia do obstaculo");
-	ordem(i);
-	printf(": ");
-	scanf("\n%i",&f[i]);	
-	
-	int x = 0;
-		
-			while (soma != o){
-				if (f[i]%m != 0)
-				{
-					m=m+1;
-					printf("\nm: %i",m);
-				}
-			else
-				{
-					mmc=mmc*m;
-					printf("\nmmc: %i",mmc);
-
-					f[i]=f[i]/m;
-					x = f[i];
-					printf("\nf: %i",f[i]);	
-					if (f[i] == 1)
-					break;
-				}	
+	int mmc (int n1, int n2){ 
+	int mmc, x, y, z;
+		y = n1;
+		x = n2;
 			
-				
-			soma = soma + x;	
-			printf("\nsoma: %i",soma);
-		
+		do{
+			z = y % x;
+			y = x;
+			x = z;
+			} while (z != 0);
 	
-	}	
-										
-											
+	mmc = (n1*n2)/y;
+	return mmc;
 	}
+
+		//principal
+	int main (){
 	
-					printf("\nMenor instante de tempo: %i",mmc);	
-					
-return 0;			
+		printf("Problema A - Tiro ao Alvo!\n");
+		int n;
+		int i=0;
+		int a, f[50];
+		scanf("%d",&n);
+		a=1;
+		
+			for ( ; i<n;++i){
+			scanf("%d",&f[i]);
+			a = mmc (f[i], a);
+			}
+				
+			if (n!=0)
+{
+			printf("\nMenor instante de tempo para atingir o alvo: ");
+			printf("\n%d", a);
+			}
+			
+return 0;
 }
